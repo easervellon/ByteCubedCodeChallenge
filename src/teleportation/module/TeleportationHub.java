@@ -126,6 +126,7 @@ public void letsTravel() {
 		}
 		
     List<String> rights = left_map_rights.get(right_most_currently);
+    
     if (rights != null) {
         for (String right : rights) {
             if (!route.contains(right)) {
