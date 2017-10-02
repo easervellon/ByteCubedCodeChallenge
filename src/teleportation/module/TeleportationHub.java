@@ -13,7 +13,7 @@ import org.junit.Test;
 public class TeleportationHub {
 
 /**
- * All route combinations
+ * All possible two-way route combinations
  */
 
 static String r1 = "Atlanta-Washington";		static String r11 = "Washington-Atlanta";
@@ -48,7 +48,7 @@ static List<String>  allRoutes = Arrays.asList(
 private static HashMap<String, List<String>> left_map_rights;
 
 @Test
-public void test1() {
+public void letsTravel() {
 	
 	Scanner scan = new Scanner(System.in);
 	String departCity;
@@ -64,6 +64,7 @@ public void test1() {
 	
 	System.out.print(ARRIVE_TO);
 	arrivalCity=scan.next();
+	scan.close();
 	
     left_map_rights = new HashMap<>();
     Iterator<String> allRoutesIterator = allRoutes.iterator(); 
@@ -96,6 +97,7 @@ public void test1() {
     List<List<String>> routes = GetAllRoutes(departCity, arrivalCity);
     
     System.out.print("Route(s) available for desired travel plan: ");
+    
     for (List<String> route : routes) {
         System.out.print(route);
     }
@@ -117,10 +119,12 @@ public void test1() {
 }
 
 	public static void Chain(List<List<String>> routes, List<String> route, String right_most_currently, String end) {
-	if (right_most_currently.equals(end)) {
+	
+		if (right_most_currently.equals(end)) {
         routes.add(route);
         return;
-    }
+		}
+		
     List<String> rights = left_map_rights.get(right_most_currently);
     if (rights != null) {
         for (String right : rights) {
@@ -128,8 +132,9 @@ public void test1() {
                 List<String> new_route = new ArrayList<String>(route);
                 new_route.add(right);
                 Chain(routes, new_route, right, end);
-            }
-        }
-    }
-}
+           
+            	}
+        	}
+    	}
+	}
 }
